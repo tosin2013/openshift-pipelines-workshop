@@ -13,7 +13,7 @@ spec:
       name: qotd-image
       type: string
       default: image-registry.openshift-image-registry.svc:5000/pipelines-rheledge/qotd-nodejs:latest
-    - default: quay-registry-quay-quay-registry.apps.cluster-n9zwf.n9zwf.sandbox1401.opentlc.com
+    - default: quay-registry-quay-quay-registry.apps.cluster-n9zwf.n9zwf.sandbox1401.opentlc.com/admin/qotd-nodejs
       name: quay-io-repository
       type: string
     - default: latest
@@ -57,6 +57,8 @@ spec:
           workspace: output
     - name: push-image-to-quay
       params:
+        - name: qotd-image
+          value: $(params.qotd-image)
         - name: quay-io-repository
           value: $(params.quay-io-repository)
         - name: quay-io-image-tag-name

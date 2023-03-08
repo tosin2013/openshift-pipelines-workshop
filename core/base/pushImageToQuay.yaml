@@ -16,6 +16,10 @@ spec:
       description: The quay.io repository in which to store the image.
       name: quay-io-repository
       type: string
+    - description: 'URL of container image to be built, i.e. output path'
+      name: qotd-image
+      type: string
+      default: image-registry.openshift-image-registry.svc:5000/pipelines-rheledge/appname:latest
     - default: $(inputs.params.quay-io-image-tag-name)
       description: The tag to use to identify the image.
       name: quay-io-image-tag-name
@@ -33,7 +37,7 @@ spec:
         - podman
         - pull
         - '--tls-verify=false'
-        - $(inputs.params.image)
+        - $(inputs.params.qotd-image)
       image: registry.redhat.io/rhel8/podman
       name: podman-pull-image
       resources: {}
