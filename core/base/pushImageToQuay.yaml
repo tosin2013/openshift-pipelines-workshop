@@ -50,7 +50,7 @@ spec:
         - buildah
         - tag
         - '--storage-driver=$(params.STORAGE_DRIVER)'
-        - $(params.params.qotd-image))
+        - $(params.params.qotd-image)
         - '$(params.quay-io-repository):$(params.quay-io-image-tag-name)'
       image: registry.redhat.io/rhel8/buildah
       name: buildah-tag-image
