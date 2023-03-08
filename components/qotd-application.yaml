@@ -8,13 +8,13 @@ metadata:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   destination:
-    namespace: rhel-edge-pipeline-core
+    namespace: pipelines-rheledge
     server: https://kubernetes.default.svc
   project: default
   source:
     path: core/overlay/default
     repoURL: https://github.com/tosin2013/openshift-pipelines-workshop.git
-    targetRevision: main
+    targetRevision: rhel-edge
   syncPolicy:
     automated:
       prune: true

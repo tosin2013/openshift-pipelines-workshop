@@ -1,0 +1,22 @@
+﻿apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: qotd-build-and-deploy-pipelinerun-
+spec:
+  params:
+    - name: IMAGE
+      value: >-
+        podman pull quayecosystem-quay-quay-enterprise.apps.example.com/admin/qotd-nodejs:v0.0.1
+    - name: git-url
+      value: 'https://github.com/tosin2013/qotd-nodejs.git'
+  pipelineRef:
+    name: qotd-build-and-deploy
+  workspaces: 
+  - name: shared-workspace
+    volumeClaimTemplate:
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 500Mi
