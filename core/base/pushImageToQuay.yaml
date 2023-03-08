@@ -37,7 +37,7 @@ spec:
         - podman
         - pull
         - '--tls-verify=false'
-        - '$(params.params.qotd-image)'
+        - '$(params.qotd-image)'
       image: registry.redhat.io/rhel8/podman
       name: podman-pull-image
       resources: {}
