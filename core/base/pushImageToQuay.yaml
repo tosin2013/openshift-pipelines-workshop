@@ -37,7 +37,7 @@ spec:
         - podman
         - pull
         - '--tls-verify=false'
-        - $(inputs.params.qotd-image)
+        - $(params.params.qotd-image)
       image: registry.redhat.io/rhel8/podman
       name: podman-pull-image
       resources: {}
@@ -50,7 +50,7 @@ spec:
         - buildah
         - tag
         - '--storage-driver=$(params.STORAGE_DRIVER)'
-        - $(inputs.params.qotd-image))
+        - $(params.params.qotd-image))
         - '$(params.quay-io-repository):$(params.quay-io-image-tag-name)'
       image: registry.redhat.io/rhel8/buildah
       name: buildah-tag-image
