@@ -2,6 +2,7 @@ apiVersion: security.openshift.io/v1
 kind: SecurityContextConstraints
 metadata:
   name: pipeline-scc
+  namespace: pipelines-rheledge
 allowPrivilegedContainer: true
 runAsUser:
   type: RunAsAny
