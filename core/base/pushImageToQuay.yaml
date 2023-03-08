@@ -90,4 +90,4 @@ spec:
         secretName: quay-auth-secret
     - name: pipeline-cache
       persistentVolumeClaim:
-        claimName: shared-workspace-pvc
+        claimName:  ${shared-workspace-pvc}
