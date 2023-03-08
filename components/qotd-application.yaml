@@ -1,0 +1,24 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rhel-edge-pipeline-core
+  namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  destination:
+    namespace: rhel-edge-pipeline-core
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: core/overlay/default
+    repoURL: https://github.com/tosin2013/openshift-pipelines-workshop.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+
