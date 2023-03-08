@@ -6,4 +6,3 @@ namespace: pipelines-rheledge
 resources:
   - pipelines-rheledge-namespace.yaml
   - pushImageToQuay.yaml
-  - qotd-build-and-deploy-to-quay-pipeline.yaml
