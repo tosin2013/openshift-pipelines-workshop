@@ -1,16 +1,44 @@
-apiVersion: security.openshift.io/v1
-kind: SecurityContextConstraints
-metadata:
-  name: pipeline-scc
-  namespace: pipelines-rheledge
-allowPrivilegedContainer: true
+allowHostPorts: false
+priority: 10
+requiredDropCapabilities:
+  - MKNOD
+allowPrivilegedContainer: false
 runAsUser:
   type: RunAsAny
+users: []
+allowHostDirVolumePlugin: false
+allowHostIPC: false
 seLinuxContext:
-  type: RunAsAny
+  type: MustRunAs
+readOnlyRootFilesystem: false
+metadata:
+  annotations:
+    include.release.openshift.io/ibm-cloud-managed: 'true'
+    include.release.openshift.io/self-managed-high-availability: 'true'
+    include.release.openshift.io/single-node-developer: 'true'
+    kubernetes.io/description: >-
+      pipelines-scc is a close replica of anyuid scc. pipelines-scc has fsGroup
+      - MustRunAs.
+    release.openshift.io/create-only: 'true'
+  name: pipelines-scc
+fsGroup:
+  type: MustRunAs
+groups:
+  - 'system:cluster-admins'
+kind: SecurityContextConstraints
+defaultAddCapabilities: null
 supplementalGroups:
   type: RunAsAny
-fsGroup:
-  type: RunAsAny
-users:
-- system:serviceaccount:pipelines-rheledge:pipeline
+volumes:
+  - configMap
+  - downwardAPI
+  - emptyDir
+  - persistentVolumeClaim
+  - projected
+  - secret
+allowHostPID: false
+allowHostNetwork: false
+allowPrivilegeEscalation: false
+apiVersion: security.openshift.io/v1
+allowedCapabilities:
+  - SETFCAP
