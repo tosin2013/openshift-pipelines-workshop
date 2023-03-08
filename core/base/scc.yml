@@ -1,0 +1,15 @@
+apiVersion: security.openshift.io/v1
+kind: SecurityContextConstraints
+metadata:
+  name: pipeline-scc
+allowPrivilegedContainer: true
+runAsUser:
+  type: RunAsAny
+seLinuxContext:
+  type: RunAsAny
+supplementalGroups:
+  type: RunAsAny
+fsGroup:
+  type: RunAsAny
+users:
+- system:serviceaccount:pipelines-rheledge:pipeline

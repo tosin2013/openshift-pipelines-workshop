@@ -5,4 +5,5 @@ namespace: pipelines-rheledge
 
 resources:
   - pipelines-rheledge-namespace.yaml
+  - scc.yml
   - pushImageToQuay.yaml
