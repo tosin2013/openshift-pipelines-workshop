@@ -38,7 +38,7 @@ spec:
       name: podman-pull-image
       resources: {}
       securityContext:
-        privileged: false
+        privileged: true
       volumeMounts:
         - mountPath: /var/lib/containers
           name: pipeline-cache
@@ -52,7 +52,7 @@ spec:
       name: buildah-tag-image
       resources: {}
       securityContext:
-        privileged: false
+        privileged: true
       volumeMounts:
         - mountPath: /var/lib/containers
           name: pipeline-cache
@@ -64,7 +64,7 @@ spec:
       name: buildah-list-images-after-tagging
       resources: {}
       securityContext:
-        privileged: false
+        privileged: true
       volumeMounts:
         - mountPath: /var/lib/containers
           name: pipeline-cache
@@ -80,7 +80,7 @@ spec:
       name: push-image-to-quay
       resources: {}
       securityContext:
-        privileged: false
+        privileged: true
       volumeMounts:
         - mountPath: /etc/secret-volume
           name: quay-auth-secret
