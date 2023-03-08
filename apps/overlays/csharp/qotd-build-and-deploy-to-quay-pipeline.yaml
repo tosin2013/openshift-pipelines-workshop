@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: qotd-build-and-push-to-quay
+  name: qotd-csharp-build-and-push-to-quay
   namespace: pipelines-rheledge
 spec:
   params:

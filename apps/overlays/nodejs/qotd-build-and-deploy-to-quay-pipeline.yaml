@@ -1,0 +1,75 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: qotd-nodejs-build-and-push-to-quay
+  namespace: pipelines-rheledge
+spec:
+  params:
+    - description: URL of git repository containing source code to be built
+      name: qotd-git
+      type: string
+    - description: 'URL of container image to be built, i.e. output path'
+      name: qotd-image
+      type: string
+    - default: quay-registry-quay-quay-registry.apps.cluster-n9zwf.n9zwf.sandbox1401.opentlc.com
+      name: quay-io-repository
+      type: string
+    - default: latest
+      name: quay-io-image-tag-name
+      type: string
+    - name: pvcName
+      type: string
+      description: The name of the PVC to use
+      default: source-pvc-nodejs
+  resources:
+    - name: app-git
+      type: git
+    - name: image
+      type: image
+  tasks:
+    - name: clone-repo
+      params:
+        - name: url
+          value: $(params.qotd-git)
+      taskRef:
+        kind: ClusterTask
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: output
+    - name: image-build
+      params:
+        - name: IMAGE
+          value: $(params.qotd-image)
+        - name: TLSVERIFY
+          value: 'false'
+        - name: CONTEXT
+          value: .
+      runAfter:
+        - clone-repo
+      taskRef:
+        kind: ClusterTask
+        name: buildah
+      workspaces:
+        - name: source
+          workspace: output
+    - name: push-image-to-quay
+      params:
+        - name: quay-io-repository
+          value: $(params.quay-io-repository)
+        - name: quay-io-image-tag-name
+          value: $(params.quay-io-image-tag-name)
+      resources:
+        inputs:
+          - name: image
+            resource: image
+      runAfter:
+        - image-build
+      taskRef:
+        kind: Task
+        name: push-image-to-quay
+  workspaces:
+    - description: |
+        This workspace will receive the cloned git repo and be passed
+        to the next Task
+      name: output
