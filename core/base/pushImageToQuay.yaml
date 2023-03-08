@@ -24,7 +24,7 @@ spec:
       description: The tag to use to identify the image.
       name: quay-io-image-tag-name
       type: string
-    - default: vfs
+    - default: overlay
       description: The Buildah storage STORAGE_DRIVER
       name: STORAGE_DRIVER
       type: string
