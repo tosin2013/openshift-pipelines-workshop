@@ -20,7 +20,7 @@ spec:
       description: The tag to use to identify the image.
       name: quay-io-image-tag-name
       type: string
-    - default: overlay
+    - default: vfs
       description: The Buildah storage STORAGE_DRIVER
       name: STORAGE_DRIVER
       type: string
@@ -34,7 +34,7 @@ spec:
       name: podman-pull-image
       resources: {}
       securityContext:
-        privileged: true
+        privileged: false
       volumeMounts:
         - mountPath: /var/lib/containers
           name: pipeline-cache
@@ -48,7 +48,7 @@ spec:
       name: buildah-tag-image
       resources: {}
       securityContext:
-        privileged: true
+        privileged: false
       volumeMounts:
         - mountPath: /var/lib/containers
           name: pipeline-cache
@@ -60,7 +60,7 @@ spec:
       name: buildah-list-images-after-tagging
       resources: {}
       securityContext:
-        privileged: true
+        privileged: false
       volumeMounts:
         - mountPath: /var/lib/containers
           name: pipeline-cache
@@ -76,7 +76,7 @@ spec:
       name: push-image-to-quay
       resources: {}
       securityContext:
-        privileged: true
+        privileged: false
       volumeMounts:
         - mountPath: /etc/secret-volume
           name: quay-auth-secret
