@@ -8,9 +8,11 @@ spec:
     - description: URL of git repository containing source code to be built
       name: qotd-git
       type: string
+      default: https://github.com/tosin2013/qotd-nodejs.git
     - description: 'URL of container image to be built, i.e. output path'
       name: qotd-image
       type: string
+      default: image-registry.openshift-image-registry.svc:5000/pipelines-rheledge/qotd-nodejs:latest
     - default: quay-registry-quay-quay-registry.apps.cluster-n9zwf.n9zwf.sandbox1401.opentlc.com
       name: quay-io-repository
       type: string
