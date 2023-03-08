@@ -6,7 +6,7 @@ spec:
   params:
     - name: IMAGE
       value: >-
-        image-registry.openshift-image-registry.svc:5000/pipelines-tutorial/qotd-nodejs:latest
+        image-registry.openshift-image-registry.svc:5000/pipelines-rheledge/qotd-nodejs:latest
     - name: git-url
       value: 'https://github.com/tosin2013/qotd-nodejs.git'
   pipelineRef:
@@ -20,3 +20,6 @@ spec:
         resources:
           requests:
             storage: 500Mi
+
+
+quay-registry-quay-quay-registry.apps.cluster-n9zwf.n9zwf.sandbox1401.opentlc.com
