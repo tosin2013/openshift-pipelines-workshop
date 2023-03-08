@@ -4,7 +4,7 @@ metadata:
   name: source-pvc-nodejs
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 500Mi
