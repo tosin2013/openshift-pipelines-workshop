@@ -94,4 +94,4 @@ spec:
         secretName: quay-auth-secret
     - name: pipeline-cache
       persistentVolumeClaim:
-        claimName:  ${params.pvcName}
+        claimName:  $(params.pvcName)
