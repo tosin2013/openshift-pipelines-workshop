@@ -5,7 +5,9 @@ Workshop to demonstrate OpenShift Pipelines (featuring Tekton)
 https://redhat-developer-demos.github.io/openshift-pipelines-workshop/
 
 
+Example Quay information
+
 ```bash
-oc adm policy add-scc-to-user anyuid -z pipeline -n pipelines-rheledge
-oc adm policy add-role-to-user admin system:serviceaccount:pipelines-rheledge:pipeline -n pipelines-rheledge
+```bash
+$ oc create secret docker-registry quay-auth-secret --docker-server=quay-registry-quay-quay-registry.apps.example.com --docker-username=CHANGEME --docker-password=CHANGEME --dry-run=client -oyaml
 ```
